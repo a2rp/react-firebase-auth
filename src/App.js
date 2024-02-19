@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styles from "./styles.module.scss";
+import Router from "./router";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { NavLink } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+const App = () => {
+    return (
+        <div className={styles.container}>
+            <div className={styles.header}>
+                <NavLink to="/home" style={{ color: "#fff" }}>
+                    a2rp: react firebase authentication
+                </NavLink>
+            </div>
+            <div className={styles.main}>
+                <div className={styles.routerContainer}>
+                    <Router />
+                </div>
+            </div>
+
+            <ToastContainer />
+        </div>
+    )
 }
 
-export default App;
+export default App

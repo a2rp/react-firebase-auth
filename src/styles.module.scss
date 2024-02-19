@@ -1,0 +1,28 @@
+.container {
+    // border: 1px solid #f00;
+    height: 100vh;
+    overflow: hidden;
+
+    .header {
+        height: 60px;
+        background-color: #000;
+        color: #aaa;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    .main {
+        height: calc(100vh - 60px);
+        overflow: scroll;
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        .routerContainer {
+            width: 100%;
+            max-width: 1200px;
+        }
+    }
+}
