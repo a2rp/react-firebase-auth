@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_firebase_auth=self.webpackChunkreact_firebase_auth||[]).push([[817],{9817:(e,t,s)=>{s.r(t),s.d(t,{default:()=>n});s(5043);var a=s(579);const n=()=>(0,a.jsx)("div",{style:{display:"flex",justifyContent:"center",alignItems:"center"},children:(0,a.jsx)("h1",{style:{fontSize:"32px"},children:"404 - Page Not Found"})})}}]);
+//# sourceMappingURL=817.7e04a5a4.chunk.js.map
