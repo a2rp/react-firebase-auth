@@ -1,52 +1,46 @@
 import React, { useState } from "react";
-import styles from "./styles.module.scss";
-import { Button } from "@mui/material";
-import { useAuth } from "../contexts/AuthContext";
-import { NavLink, useNavigate } from "react-router-dom";
+import { MdLockOpen, MdLogout, MdPerson } from "react-icons/md";
+import { Alert, Button } from "@mui/material";
 import Swal from "sweetalert2";
+import { useAuth } from "../contexts/AuthContext";
+import styles from "./styles.module.scss";
 
 const Dashboard = () => {
     const { currentUser, logout } = useAuth();
-    const navigate = useNavigate();
     const [error, setError] = useState("");
 
     const handleLogout = async () => {
-        setError("");
+        const result = await Swal.fire({
+            title: "Sign out?",
+            text: "Your current session will be closed.",
+            showCancelButton: true,
+            confirmButtonText: "Sign out",
+            cancelButtonText: "Keep me signed in",
+        });
+        if (!result.isConfirmed) return;
+
         try {
-            Swal.fire({
-                title: "Do you want to log out?",
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: "Yes",
-                denyButtonText: `No`
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const firebaseLogout = async () => {
-                        await logout();
-                        navigate("/login");
-                    };
-                    firebaseLogout();
-                }
-            });
-        } catch (error) {
-            console.log(error, "logoiy");
-            setError(error.message);
+            setError("");
+            await logout();
+        } catch (logoutError) {
+            setError(logoutError.message);
         }
     };
 
     return (
-        <div className={styles.container}>
-            <Button
-                className={styles.logoutButton}
-                variant="contained"
-                size="small"
-                color="error"
-                onClick={handleLogout}
-            >Log out</Button>
-            <h1 className={styles.heading}>Dashboard</h1>
-            <div className={styles.welcome}>Welcome {currentUser.email}</div>
-        </div>
-    )
-}
+        <section className={styles.container}>
+            <div className={styles.dashboardHead}>
+                <div><span className={styles.eyebrow}>PRIVATE AREA</span><h1 className={styles.heading}>Dashboard</h1></div>
+                <Button className={styles.logoutButton} variant="outlined" color="error" onClick={handleLogout}><MdLogout />Sign out</Button>
+            </div>
+            {error && <Alert severity="error">{error}</Alert>}
+            <div className={styles.dashboardGrid}>
+                <article><MdPerson /><span>Signed in as</span><strong>{currentUser?.email}</strong></article>
+                <article><MdLockOpen /><span>Route status</span><strong>Protected</strong></article>
+            </div>
+            <p className={styles.welcome}>This page is available only while Firebase reports an active authenticated session.</p>
+        </section>
+    );
+};
 
-export default Dashboard
+export default Dashboard;

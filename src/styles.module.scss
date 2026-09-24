@@ -1,28 +1,53 @@
 .container {
-    // border: 1px solid #f00;
-    height: 100vh;
-    overflow: hidden;
-
-    .header {
-        height: 60px;
-        background-color: #000;
-        color: #aaa;
-        padding: 15px;
-        display: flex;
-        align-items: center;
-    }
-
-    .main {
-        height: calc(100vh - 60px);
-        overflow: scroll;
-        padding: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-
-        .routerContainer {
-            width: 100%;
-            max-width: 1200px;
-        }
-    }
+    min-height: 100vh;
+    color: #eef3fb;
+    background: #0a101b;
+}
+.header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 1000;
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 12px clamp(16px, 4vw, 52px);
+    border-bottom: 1px solid #223047;
+    background: #0a101b;
+}
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #eef3fb;
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+.brand:hover { color: #73c9ff; text-shadow: 0 0 15px rgba(115, 201, 255, 0.2); }
+.brand img { width: 38px; height: 38px; object-fit: contain; border: 1px solid #223047; border-radius: 10px; }
+.brand span { display: grid; gap: 0; font-weight: 700; white-space: nowrap; }
+.brand small { color: #8391a8; font-size: 9px; letter-spacing: 0.16em; }
+.nav { display: flex; align-items: center; gap: 7px; }
+.nav a {
+    padding: 8px 11px;
+    color: #9aa8bc;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.nav a:hover, .nav a[class*="active"] { color: #73c9ff; border-color: #73c9ff; box-shadow: 0 0 0 3px rgba(115, 201, 255, 0.12); }
+.main {
+    min-height: 100vh;
+    padding: 112px clamp(16px, 4vw, 52px) 32px;
+    overflow: auto;
+}
+.routerContainer { width: min(100%, 1180px); margin: 0 auto; }
+@media (max-width: 680px) {
+    .header { align-items: flex-start; flex-direction: column; gap: 10px; padding-top: 10px; }
+    .nav { width: 100%; overflow-x: auto; }
+    .nav a { white-space: nowrap; }
+    .main { padding-top: 132px; }
 }

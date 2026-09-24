@@ -1,16 +1,12 @@
-.container {
-    padding: 15px;
-
-    .logoutButton {
-        float: right;
-    }
-
-    .heading {
-        margin-top: 15px;
-        font-size: 20px;
-    }
-
-    .welcome {
-        margin-top: 15px;
-    }
-}
+.container { padding: 24px 0 60px; }
+.dashboardHead { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; margin-bottom: 24px; }
+.eyebrow { color: #73c9ff; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; }
+.heading { margin: 6px 0 0; color: #f5f8fd; font-size: clamp(2.4rem, 6vw, 5rem); line-height: 0.96; }
+.logoutButton { display: inline-flex !important; align-items: center; gap: 6px; }
+.dashboardGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-top: 22px; }
+.dashboardGrid article { display: grid; gap: 5px; padding: 22px; border: 1px solid #223047; border-radius: 14px; background: #101a2a; }
+.dashboardGrid svg { color: #73c9ff; font-size: 26px; }
+.dashboardGrid span { color: #9aa8bc; font-size: 0.82rem; }
+.dashboardGrid strong { color: #f5f8fd; overflow-wrap: anywhere; }
+.welcome { margin-top: 22px; color: #9aa8bc; }
+@media (max-width: 650px) { .dashboardHead { align-items: flex-start; flex-direction: column; } .dashboardGrid { grid-template-columns: 1fr; } }

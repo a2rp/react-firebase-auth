@@ -11,7 +11,7 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState("password12345");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const { register, currentUser } = useAuth();
+    const { register } = useAuth();
     const navigate = useNavigate();
     const [passwordInputType, setPasswordInputType] = useState("password");
     const [confirmPasswordInputType, setConfirmPasswordInputType] = useState("password");
@@ -19,7 +19,7 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             return setError("Invalid email address");
         }
@@ -35,11 +35,9 @@ const Register = () => {
         try {
             setIsLoading(true);
             setError("");
-            const response = await register(email, password);
-            console.log(response, "register response");
+            await register(email, password);
             navigate("/dashboard");
         } catch (error) {
-            console.log(error.message, "error message");
             setError(error.message);
         } finally {
             setIsLoading(false);

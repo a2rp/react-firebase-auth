@@ -10,14 +10,14 @@ const Login = () => {
     const [password, setPassword] = useState("password12345");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const { login, currentUser } = useAuth();
+    const { login } = useAuth();
     const navigate = useNavigate();
     const [passwordInputType, setPasswordInputType] = useState("password");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailRegex.test(email)) {
             return setError("Invalid email address");
@@ -30,11 +30,9 @@ const Login = () => {
         try {
             setIsLoading(true);
             setError("");
-            const response = await login(email, password);
-            console.log(response, "login response");
+            await login(email, password);
             navigate("/dashboard");
         } catch (error) {
-            console.log(error.message, "error message");
             setError(error.message);
         } finally {
             setIsLoading(false);

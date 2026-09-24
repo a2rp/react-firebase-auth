@@ -1,11 +1,12 @@
+import { CircularProgress } from "@mui/material";
 import React from "react";
-import { Route, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 const PrivateRoute = ({ children }) => {
-    const { currentUser } = useAuth();
+    const { currentUser, loading } = useAuth();
+    if (loading) return <CircularProgress color="inherit" />;
+    return currentUser ? children : <Navigate to="/login" replace />;
+};
 
-    return currentUser ? <>{children}</> : <Navigate to="/login" />;
-}
-
-export default PrivateRoute
+export default PrivateRoute;

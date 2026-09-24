@@ -1,6 +1,6 @@
 import { Alert, Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 const ForgotPassword = () => {
@@ -9,12 +9,11 @@ const ForgotPassword = () => {
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const { resetPassword } = useAuth();
-    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailRegex.test(email)) {
             return setError("Invalid email address");
@@ -27,7 +26,6 @@ const ForgotPassword = () => {
             await resetPassword(email);
             setMessage("Check email for password reset link");
         } catch (error) {
-            console.log(error.message, "forgot p[assword error message");
             setError(error.message);
         } finally {
             setIsLoading(false);
