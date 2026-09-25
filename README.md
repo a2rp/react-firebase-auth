@@ -10,6 +10,7 @@ A responsive React authentication example powered by Firebase Authentication. It
 - Password reset flow with clear success and error states
 - Protected dashboard route with sign-out confirmation
 - Responsive fixed header, icon-only footer and accessible navigation
+- Floating go-to-top control with smooth scrolling
 - GitHub Pages deployment configuration
 
 ## Tech stack
