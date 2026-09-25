@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/react-firebase-auth/static/css/main.ebddd1c8.css",
-    "main.js": "/react-firebase-auth/static/js/main.5d43258a.js",
+    "main.css": "/react-firebase-auth/static/css/main.ca332457.css",
+    "main.js": "/react-firebase-auth/static/js/main.08ac2139.js",
     "static/css/633.eb78c1b4.chunk.css": "/react-firebase-auth/static/css/633.eb78c1b4.chunk.css",
     "static/js/633.069dbf77.chunk.js": "/react-firebase-auth/static/js/633.069dbf77.chunk.js",
     "static/css/116.d401aebd.chunk.css": "/react-firebase-auth/static/css/116.d401aebd.chunk.css",
@@ -12,11 +12,10 @@
     "static/js/817.7e04a5a4.chunk.js": "/react-firebase-auth/static/js/817.7e04a5a4.chunk.js",
     "static/js/773.75cc5df7.chunk.js": "/react-firebase-auth/static/js/773.75cc5df7.chunk.js",
     "static/js/926.0aad6fa1.chunk.js": "/react-firebase-auth/static/js/926.0aad6fa1.chunk.js",
-    "static/js/720.92d6ffcb.chunk.js": "/react-firebase-auth/static/js/720.92d6ffcb.chunk.js",
     "static/js/64.9876c9a1.chunk.js": "/react-firebase-auth/static/js/64.9876c9a1.chunk.js",
     "index.html": "/react-firebase-auth/index.html",
-    "main.ebddd1c8.css.map": "/react-firebase-auth/static/css/main.ebddd1c8.css.map",
-    "main.5d43258a.js.map": "/react-firebase-auth/static/js/main.5d43258a.js.map",
+    "main.ca332457.css.map": "/react-firebase-auth/static/css/main.ca332457.css.map",
+    "main.08ac2139.js.map": "/react-firebase-auth/static/js/main.08ac2139.js.map",
     "633.eb78c1b4.chunk.css.map": "/react-firebase-auth/static/css/633.eb78c1b4.chunk.css.map",
     "633.069dbf77.chunk.js.map": "/react-firebase-auth/static/js/633.069dbf77.chunk.js.map",
     "116.d401aebd.chunk.css.map": "/react-firebase-auth/static/css/116.d401aebd.chunk.css.map",
@@ -27,11 +26,10 @@
     "817.7e04a5a4.chunk.js.map": "/react-firebase-auth/static/js/817.7e04a5a4.chunk.js.map",
     "773.75cc5df7.chunk.js.map": "/react-firebase-auth/static/js/773.75cc5df7.chunk.js.map",
     "926.0aad6fa1.chunk.js.map": "/react-firebase-auth/static/js/926.0aad6fa1.chunk.js.map",
-    "720.92d6ffcb.chunk.js.map": "/react-firebase-auth/static/js/720.92d6ffcb.chunk.js.map",
     "64.9876c9a1.chunk.js.map": "/react-firebase-auth/static/js/64.9876c9a1.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ebddd1c8.css",
-    "static/js/main.5d43258a.js"
+    "static/css/main.ca332457.css",
+    "static/js/main.08ac2139.js"
   ]
 }
