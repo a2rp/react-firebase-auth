@@ -1,5 +1,4 @@
 import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
@@ -11,8 +10,11 @@ const firebaseConfig = {
     appId: process.env.REACT_APP_appId
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth();
-const db = getFirestore(app);
-export { db, auth };
+const isFirebaseConfigured = Object.values(firebaseConfig).every((value) => (
+    typeof value === "string" && value.trim().length > 0 && !value.startsWith("your-")
+));
+const app = isFirebaseConfigured ? initializeApp(firebaseConfig) : null;
+const auth = app ? getAuth(app) : null;
+
+export { auth, isFirebaseConfigured };
 

@@ -1,4 +1,4 @@
-import { Alert, Box, Button, TextField } from "@mui/material";
+import { Alert, Box, Button, IconButton, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
@@ -6,11 +6,11 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 const Login = () => {
-    const [email, setEmail] = useState("email2@mail.com");
-    const [password, setPassword] = useState("password12345");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const { login } = useAuth();
+    const { login, isFirebaseConfigured } = useAuth();
     const navigate = useNavigate();
     const [passwordInputType, setPasswordInputType] = useState("password");
 
@@ -44,11 +44,12 @@ const Login = () => {
             <Box
                 component="form"
                 noValidate
-                autoComplete="off"
+                autoComplete="on"
                 onSubmit={handleSubmit}
                 sx={{ maxWidth: "480px" }}
             >
                 <h1>Login</h1>
+                {!isFirebaseConfigured && <Alert severity="warning">Firebase Authentication is not configured. Follow the setup steps in the project README.</Alert>}
                 <div style={{ marginTop: "30px" }}>
                     {error.length > 0
                         ? <Alert severity="error">{error}</Alert>
@@ -59,36 +60,42 @@ const Login = () => {
                     fullWidth
                     label="Email Address"
                     type="email"
+                    autoComplete="email"
                     value={email}
                     onChange={event => setEmail(event.target.value)}
                     sx={{ marginTop: "30px" }}
                 />
-                <div style={{ marginTop: "30px", position: "relative" }}>
-                    <TextField
-                        required
-                        fullWidth
-                        label="Password"
-                        type={passwordInputType}
-                        value={password}
-                        onChange={event => setPassword(event.target.value)}
-                    />
-                    {passwordInputType === "text" ? <>
-                        <VisibilityIcon style={{ position: "absolute", margin: "auto", top: 0, bottom: 0, right: "10px" }} onClick={() => setPasswordInputType("password")} />
-                    </> : <>
-                        <VisibilityOffIcon style={{ position: "absolute", margin: "auto", top: 0, bottom: 0, right: "10px" }} onClick={() => setPasswordInputType("text")} />
-                    </>}
-                </div>
+                <TextField
+                    required
+                    fullWidth
+                    label="Password"
+                    type={passwordInputType}
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={event => setPassword(event.target.value)}
+                    InputProps={{
+                        endAdornment: (
+                            <IconButton
+                                edge="end"
+                                aria-label={passwordInputType === "text" ? "Hide password" : "Show password"}
+                                onClick={() => setPasswordInputType((type) => type === "password" ? "text" : "password")}
+                            >
+                                {passwordInputType === "text" ? <VisibilityOffIcon aria-hidden="true" /> : <VisibilityIcon aria-hidden="true" />}
+                            </IconButton>
+                        ),
+                    }}
+                />
                 <Button
                     fullWidth
                     type="submit"
                     variant="contained"
                     sx={{ marginTop: "30px" }}
-                    disabled={isLoading}
+                    disabled={isLoading || !isFirebaseConfigured}
                 >Submit</Button>
 
                 <div style={{ marginTop: "30px", display: "flex", justifyContent: "space-between", gap: "30px" }}>
                     <NavLink to="/forgot-password">
-                        Forget password ?
+                        Forgot password?
                     </NavLink>
                     <div>
                         Do not have an account? <NavLink to="/register">Register</NavLink>

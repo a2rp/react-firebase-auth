@@ -15,18 +15,16 @@ A responsive React authentication example powered by Firebase Authentication. It
 
 ## Tech stack
 
-React, Create React App, Firebase Authentication, React Router, Material UI, Sass and react-icons.
+React, Create React App, Firebase Authentication, React Router, Material UI, Sass, SweetAlert2 and react-icons.
 
 ## Firebase setup
 
-Create a Firebase project and enable Email/Password Authentication. Add these values to a local .env file using the REACT_APP_ prefix:
+1. Create a Firebase project, register a Web app, and enable Email/Password Authentication.
+2. Copy `.env.example` to `.env` and replace each placeholder with the Firebase Web app config values.
+3. Add `localhost` and `a2rp.github.io` under Firebase Authentication's authorized domains.
+4. Restart the development server after changing `.env` values. For deployment, provide the same values to the build environment before running `npm run deploy`.
 
-REACT_APP_apiKey
-REACT_APP_authDomain
-REACT_APP_projectId
-REACT_APP_storageBucket
-REACT_APP_messagingSenderId
-REACT_APP_appId
+The Firebase Web app config is included in the built frontend. Firebase service API keys identify the project; they are not authorization credentials. Never put Firebase Admin SDK service-account keys or other private server credentials in this frontend. See [Firebase's API key guidance](https://firebase.google.com/docs/projects/api-keys).
 
 ## Run locally
 

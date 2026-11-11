@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { MdKeyboardArrowUp } from "react-icons/md";
-import { ToastContainer } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import styles from "./styles.module.scss";
 import Router from "./router";
 import Footer from "./components/Footer";
-import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
     const [showGoTop, setShowGoTop] = useState(false);
@@ -36,7 +34,6 @@ const App = () => {
                 <Footer />
             </main>
             {showGoTop && <button className={styles.goTopButton} type="button" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} aria-label="Go to top" title="Go to top"><MdKeyboardArrowUp /></button>}
-            <ToastContainer position="bottom-right" />
         </div>
     );
 };

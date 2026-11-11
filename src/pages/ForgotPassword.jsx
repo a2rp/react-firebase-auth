@@ -4,11 +4,11 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 const ForgotPassword = () => {
-    const [email, setEmail] = useState("email2@mail.com");
+    const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const [message, setMessage] = useState("");
     const [isLoading, setIsLoading] = useState(false);
-    const { resetPassword } = useAuth();
+    const { resetPassword, isFirebaseConfigured } = useAuth();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -37,11 +37,12 @@ const ForgotPassword = () => {
             <Box
                 component="form"
                 noValidate
-                autoComplete="off"
+                autoComplete="on"
                 onSubmit={handleSubmit}
                 sx={{ maxWidth: "480px" }}
             >
                 <h1>Reset password</h1>
+                {!isFirebaseConfigured && <Alert severity="warning">Firebase Authentication is not configured. Follow the setup steps in the project README.</Alert>}
                 <div style={{ marginTop: "30px" }}>
                     {error.length > 0
                         ? <Alert severity="error">{error}</Alert>
@@ -55,6 +56,7 @@ const ForgotPassword = () => {
                     fullWidth
                     label="Email Address"
                     type="email"
+                    autoComplete="email"
                     value={email}
                     onChange={event => setEmail(event.target.value)}
                     sx={{ marginTop: "30px" }}
@@ -64,7 +66,7 @@ const ForgotPassword = () => {
                     type="submit"
                     variant="contained"
                     sx={{ marginTop: "30px" }}
-                    disabled={isLoading}
+                    disabled={isLoading || !isFirebaseConfigured}
                 >Submit</Button>
 
                 <div style={{ marginTop: "30px", display: "flex", justifyContent: "space-between", gap: "30px" }}>
